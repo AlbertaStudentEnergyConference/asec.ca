@@ -37,6 +37,9 @@ module.exports.PriorityError = PriorityError;
 module.exports.register = function (priority, hook) {
     for (const p in constants.priority) {
         if (constants.priority[p] === priority) {
+            if (typeof log !== 'undefined') {
+                log.debug(`Registered exit hook @ ${p}`);
+            }
             hooks[priority].unshift(hook);
             return;
         }
@@ -46,14 +49,18 @@ module.exports.register = function (priority, hook) {
 
 function onShutdown (code) {
     var running = 0;
-    if (!code) {
+    if (typeof code !== "number") {
         code = 1;
     }
     function execHooks (priority) {
         for (const hook of hooks[priority]) {
             running++;
             if (code === 0) {
-                process.stderr.write(`[EXITHOOK] Executing exit hook at priority ${priority}\n`);
+                if (typeof log !== 'undefined') {
+                    log.info(`[EXITHOOK] Executing exit hook at priority ${priority}`);
+                } else {
+                    process.stderr.write(`[EXITHOOK] Executing exit hook at priority ${priority}\n`);
+                }
             }
             hook(function () {
                 running--;
@@ -62,20 +69,41 @@ function onShutdown (code) {
     }
 
     execHooks(constants.priority.HIGH);
-    execHooks(constants.priority.MEDIUM);
-    execHooks(constants.priority.LOW);
+    setTimeout(function () {
+        execHooks(constants.priority.MEDIUM);
+    }, 10)
+    setTimeout(function () {
+        execHooks(constants.priority.LOW);
+    }, 20);
     setInterval(function () {
         if (running === 0) {
-            process.exit();
+            process.exit(code);
+        } else if (typeof log !== 'undefined') {
+            log.warn(`[EXITHOOK] ${running} hooks still running...`);
         } else {
             process.stderr.write(`[EXITHOOK] ${running} hooks still running...\n`);
         }
     }, 100);
 }
 
-process.on("SIGHUP", onShutdown); // 3
-process.on("SIGINT", onShutdown); // 2
-process.on("SIGTERM", onShutdown); // 1
+process.on("SIGHUP", function() {
+    if (typeof log !== 'undefined') {
+        log.fatal(`[EXITHOOK] Received SIGHUP`);
+    }
+    onShutdown(3);
+}); // 3
+process.on("SIGINT", function() {
+    if (typeof log !== 'undefined') {
+        log.fatal(`[EXITHOOK] Received SIGINT`);
+    }
+    onShutdown(2);
+}); // 2
+process.on("SIGTERM", function() {
+    if (typeof log !== 'undefined') {
+        log.fatal(`[EXITHOOK] Received SIGTERM`);
+    }
+    onShutdown(3);
+}); // 1
 
 /**
  * Manually call all the hooks (eg. program exits properly)
@@ -84,3 +112,13 @@ process.on("SIGTERM", onShutdown); // 1
  * @return {undefined}
  */
 module.exports.shutdown = onShutdown;
+
+process.once("uncaughtException", function (e) {
+    if (typeof log !== 'undefined') {
+        log.fatal(e.stack);
+    } else {
+        process.stderr.write('An unrecoverable error occurred.');
+        process.stderr.write(e.stack);
+    }
+    onShutdown(1);
+});

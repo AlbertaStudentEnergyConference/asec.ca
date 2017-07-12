@@ -19,10 +19,14 @@ var logBuf = [];
 var logFile = fs.createWriteStream(`${__rootname}/${config.log.LogFile}`, {
     flags: "a"
 });
+var done = false;
 
 // register a close hook so the file gets closed
 exitProcedures.register(constants.priority.MEDIUM, function(clbk) {
-    logFile.end(clbk);
+    logFile.end(function() {
+        done = true;
+        clbk();
+    });
 });
 
 /**
@@ -45,7 +49,13 @@ function _log (msg) {
             msg = logBuf.splice(0, 1);
         }
         if (msg) {
-            let ok = logFile.write(msg);
+            let ok;
+            if (done) {
+                process.stderr.write(msg);
+                ok = true;
+            } else {
+                ok = logFile.write(msg);
+            }
             if (!ok) {
                 slowYourRoll = true;
                 logFile.once("drain", function () {

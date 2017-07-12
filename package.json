@@ -6,6 +6,7 @@
   "dependencies": {
     "es6-template-strings": "^2.0.1",
     "mocha": "^3.4.2",
+    "mysql": "^2.13.0",
     "should": "^11.2.1"
   },
   "devDependencies": {},
