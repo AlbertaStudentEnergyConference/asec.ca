@@ -1,0 +1,26 @@
+{
+  "name": "asec.ca",
+  "version": "0.0.1",
+  "description": "Site files for https://asec.ca",
+  "main": "cgi-bin/init.js",
+  "dependencies": {
+    "es6-template-strings": "^2.0.1",
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "build test",
+    "build": "sudo ./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertaStudentEnergyConference/asec.ca.git"
+  },
+  "author": "Mitchell Sawatzky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlbertaStudentEnergyConference/asec.ca/issues"
+  },
+  "homepage": "https://github.com/AlbertaStudentEnergyConference/asec.ca#readme"
+}
