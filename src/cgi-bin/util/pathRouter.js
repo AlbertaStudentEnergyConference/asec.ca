@@ -40,10 +40,12 @@ function descend (path) {
                 enpt.name = dir[i].substring(0, dir[i].indexOf("."));
                 enpt.abspath = pathLib.resolve(path + "/" + dir[i]);
                 enpt.code = require(enpt.abspath);
-                enpt.path = enpt.code.matchPath;
-                registeredEndpoints[enpt.type][enpt.path] = enpt;
+                enpt.paths = enpt.code.matchPaths;
+                for (let path of enpt.paths) {
+                    registeredEndpoints[enpt.type][path] = enpt;
+                }
             } else {
-                log.warn("Unexpected non-js file in endpoints: " + path + "/%r" + dir[i]);
+                log.warn("Unexpected non-js file in endpoints: " + path + "/" + dir[i]);
             }
         }
     }
@@ -56,7 +58,8 @@ module.exports.init = function () {
 module.exports.handoff = function (request, clbk) {
     if (registeredEndpoints[request.method].hasOwnProperty(request.pathname)) {
         // found the page
-        registeredEndpoints[request.method][request.pathname].handle(request, clbk);
+        log.debug("Matching handler located");
+        registeredEndpoints[request.method][request.pathname].code.handle(request, clbk);
     } else {
         // 404
         headers.setHeader(request, "status", `${constants.status.NOTFOUND.code} ${constants.status.NOTFOUND.text}`);
@@ -66,8 +69,10 @@ module.exports.handoff = function (request, clbk) {
             explanation: `The requested URL was not found on this server.`,
             url: request.pathname,
             id: request.id,
-            method: request.method
+            method: request.method,
+            cache: request.cacheControl
         });
+        log.info("Terminating request with NOTFOUND");
         clbk();
     }
 };

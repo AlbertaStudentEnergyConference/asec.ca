@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/umbrella.css?v=${cache.css}" />
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/header.css?v=${cache.css}" />
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/footer.css?v=${cache.css}" />
+    </head>
+    <body>
+        <div id="site">
+            <!-- BEGIN HEADER -->
+            <div id="header">
+                <div class="wrapped_image_wrapper">
+                    <a href="/" class="wrapped_image">
+                        <span class="logo">
+                            <span class="smalllogo_text centerY">
+                                <span class="primaryFont">Alberta Student Energy Conference</span>
+                                <br />
+                                <span class="secondaryFont"><i>Momentum: Building the Future</i></span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <table class="menu primaryFont">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><a href="/">ASEC</a></td>
+                            <td><a href="/about">ABOUT</a></td>
+                            <td><a href="/gallery">GALLERY</a></td>
+                            <td><a href="/schedule">SCHEDULE</a></td>
+                            <td><a href="/register">REGISTER</a></td>
+                            <td><a href="/team">TEAM</a></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- END HEADER -->
+            <!-- BEGIN PAGE -->
+            <div id="content">
+${content}
+            </div>
+            <!-- END PAGE -->
+            <!-- BEGIN FOOTER -->
+            <div id="footer">
+                <div id="footerContent" class="centerY">
+                    Copyright 2017 Alberta Student Energy Conference, All Rights Reserved<br />
+                    <a href="mailto:it@asec.ca">Contact Webmaster</a> | <a href="mailto:communications@asec.ca">General Inquieries</a>
+                    <div class="technicalDetails right">
+                        Request ID: ${id}<br />
+                        Request Load: ${time}ms<br />
+                    </div>
+                </div>
+            </div>
+            <!-- END FOOTER -->
+        </div>
+    </body>
+</html>

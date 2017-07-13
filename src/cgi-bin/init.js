@@ -9,6 +9,8 @@
  * @copyright Alberta Student Energy Conference, 2017
  */
 
+process.env.REQUEST_START = Date.now();
+
 // First thing's first, we need to set up some globals for everyone else.
 global.__rootname = __dirname; // rootname provides a means of absolute includes from this file's location
 
@@ -32,6 +34,13 @@ pathRouter.init();
 log.debug("Obtaining database connection...");
 dbC.acquire(function (db) {
     request.db = db;
+
+    // cache control
+    request.cacheControl = {
+        css: Date.now(),
+        js: Date.now(),
+        now: Date.now()
+    };
 
     log.debug("Setting default headers...");
     headers.setDefaultHeaders(request);
