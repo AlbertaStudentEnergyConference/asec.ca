@@ -59,9 +59,15 @@ module.exports.handoff = function (request, clbk) {
         registeredEndpoints[request.method][request.pathname].handle(request, clbk);
     } else {
         // 404
-        headers.setHeader(request, "status", constants.status.NOTFOUND);
+        headers.setHeader(request, "status", `${constants.status.NOTFOUND.code} ${constants.status.NOTFOUND.text}`);
 
-        request.body = template.get("errors/404.html");
+        request.body = template.get("errors/error.html", {
+            error: constants.status.NOTFOUND,
+            explanation: `The requested URL was not found on this server.`,
+            url: request.pathname,
+            id: request.id,
+            method: request.method
+        });
         clbk();
     }
 };

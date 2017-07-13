@@ -35,7 +35,6 @@ dbC.acquire(function (db) {
 
     log.debug("Setting default headers...");
     headers.setDefaultHeaders(request);
-
     pathRouter.handoff(request, function () {
         // everything should be done. finish it off.
         output.write(headers.get(request));

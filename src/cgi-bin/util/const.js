@@ -24,6 +24,9 @@ module.exports = {
         "content-type": "text/html"
     },
     status: {
-        NOTFOUND: "404 Not Found"
+        NOTFOUND: {
+            code: 404,
+            text: "Not Found"
+        }
     }
 }

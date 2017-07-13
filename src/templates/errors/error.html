@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ASEC | Error ${error.code} (${error.text})</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/umbrella.css" />
+    </head>
+    <body>
+        <div id="site">
+            <div class="center primaryFont">
+                <a href="/" class="wrapped_image">
+                    <span class="logo">
+                        <span class="smalllogo_text centerY">
+                            <span class="primaryFont">Alberta Student Energy Conference</span>
+                            <br />
+                            <span class="secondaryFont"><i>Momentum: Building the Future</i></span>
+                        </span>
+                    </span>
+                </a>
+                <div class="aLittleOnTop">ERROR <strong>${error.code}</strong> | ${error.text}</div>
+                <div>${explanation}</div>
+                <br />
+                <br />
+                <div class="technicalDetails">
+                    Request ID: ${id}<br />
+                    Request URL: ${url}<br />
+                    Request METHOD: ${method}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
