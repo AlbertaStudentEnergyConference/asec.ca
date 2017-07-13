@@ -18,6 +18,7 @@ global.log = require(`${__rootname}/util/log`);
 const envProcessor = require(`${__rootname}/util/envProcessor`);
 const headers = require(`${__rootname}/util/headers`);
 const dbC = require(`${__rootname}/db/db`);
+const pathRouter = require(`${__rootname}/util/pathRouter`);
 
 
 log.debug("Starting...");
@@ -25,20 +26,23 @@ let request = envProcessor.process();
 log.info(`Serving ${request.href}`);
 log.debug(`Request ID: ${request.id}`);
 
+log.debug("Initializing  path router...");
+pathRouter.init();
+
 log.debug("Obtaining database connection...");
 dbC.acquire(function (db) {
     request.db = db;
-    log.debug("Obtained database connection");
 
+    log.debug("Setting default headers...");
     headers.setDefaultHeaders(request);
-    return;
-    // eslint-disable-next-line no-unreachable
-    output.write(headers.get(request));
-    output.write("");
 
-    output.write('hello there');
-    log.debug("Done.");
+    pathRouter.handoff(request, function () {
+        // everything should be done. finish it off.
+        output.write(headers.get(request));
+        output.write("");
+        output.write(request.body);
 
-    // We're all done here.
-    exitProcedures.shutdown(0);
+        // We're all done here.
+        exitProcedures.shutdown(0);
+    });
 });

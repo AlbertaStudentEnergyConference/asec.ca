@@ -11,7 +11,7 @@ const constants = require(`${__rootname}/util/const`);
 
 module.exports.setDefaultHeaders = function (request) {
     for (let key in constants.default_headers) {
-        module.exports.setHeader(request, key, constants.default_headers[key]);
+        module.exports.setHeader(request, key, constants.DEFAULT_HEADERS[key]);
     }
 };
 

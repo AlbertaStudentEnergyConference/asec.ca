@@ -20,7 +20,10 @@ module.exports = {
         MEDIUM: 2,
         LOW: 3
     },
-    default_headers: {
+    DEFAULT_HEADERS: {
         "content-type": "text/html"
+    },
+    status: {
+        NOTFOUND: "404 Not Found"
     }
 }
