@@ -15,26 +15,19 @@ global.__rootname = __dirname; // rootname provides a means of absolute includes
 const output = require(`${__rootname}/util/output`);
 const exitProcedures = require(`${__rootname}/util/exitProcedures`);
 global.log = require(`${__rootname}/util/log`);
+const envProcessor = require(`${__rootname}/util/envProcessor`);
 const dbC = require(`${__rootname}/db/db`);
 
+
 log.debug("Starting...");
-log.info(`Serving ${process.env.REQUEST_URI}`);
+let request = envProcessor.process();
+log.info(`Serving ${request.href}`);
+log.debug(`Request ID: ${request.id}`);
 
 log.debug("Obtaining database connection...");
-// For now we're gonna go with a single global connection :-)
-dbC.acquire(function (db) {
-    global.db = db;
+dbC.acquire(function () {
+    request.db = db;
     log.debug("Obtained database connection");
-
-    output.write("Content-type: text/html\n\n");
-    const temp = require("es6-template-strings");
-    const fs = require("fs");
-    let out = temp(fs.readFileSync(`${__rootname}/../templates/construction.html`).toString("utf-8"), {
-        header: {
-            title: "Alberta Student Energy Conference"
-        }
-    });
-    output.write(out);
 
     log.debug("Done.");
 
