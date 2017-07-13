@@ -16,6 +16,7 @@ const output = require(`${__rootname}/util/output`);
 const exitProcedures = require(`${__rootname}/util/exitProcedures`);
 global.log = require(`${__rootname}/util/log`);
 const envProcessor = require(`${__rootname}/util/envProcessor`);
+const headers = require(`${__rootname}/util/headers`);
 const dbC = require(`${__rootname}/db/db`);
 
 
@@ -25,9 +26,15 @@ log.info(`Serving ${request.href}`);
 log.debug(`Request ID: ${request.id}`);
 
 log.debug("Obtaining database connection...");
-dbC.acquire(function () {
+dbC.acquire(function (db) {
     request.db = db;
     log.debug("Obtained database connection");
+
+    headers.setDefaultHeaders(request);
+
+    output.write(headers.get(request));
+    output.write("\n");
+
 
     log.debug("Done.");
 
