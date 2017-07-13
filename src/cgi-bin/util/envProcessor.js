@@ -65,6 +65,7 @@ module.exports.process = function () {
         query: {},
         headers: {}
     };
+    process.env.REQUEST_ID = request.id;
 
     let components = process.env.QUERY_STRING.split("&");
     for (let component of components) {

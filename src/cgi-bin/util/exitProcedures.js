@@ -9,6 +9,7 @@
 
 const error = require(`${__rootname}/util/error`);
 const constants = require(`${__rootname}/util/const`);
+const crashDump = require(`${__rootname}/util/crashDump`);
 
 // functions to be called
 var hooks = {};
@@ -116,9 +117,7 @@ module.exports.shutdown = onShutdown;
 process.once("uncaughtException", function (e) {
     if (typeof log !== 'undefined') {
         log.fatal(e.stack);
-    } else {
-        process.stderr.write('An unrecoverable error occurred.');
-        process.stderr.write(e.stack);
     }
+    crashDump.dump(e.stack);
     onShutdown(1);
 });

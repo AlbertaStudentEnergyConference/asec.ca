@@ -31,11 +31,12 @@ dbC.acquire(function (db) {
     log.debug("Obtained database connection");
 
     headers.setDefaultHeaders(request);
-
+    return;
+    // eslint-disable-next-line no-unreachable
     output.write(headers.get(request));
-    output.write("\n");
+    output.write("");
 
-
+    output.write('hello there');
     log.debug("Done.");
 
     // We're all done here.
