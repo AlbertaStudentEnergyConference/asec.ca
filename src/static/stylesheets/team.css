@@ -1,0 +1,24 @@
+.headshot img {
+    width: 150px;
+    height: 150px;
+}
+.headshot,
+.groupWrapper,
+.memberInfo {
+    text-align: center;
+}
+.teamMember {
+    display: inline-block;
+    min-width: 250px;
+    margin-top: 33px;
+}
+#executiveWrapper {
+    position: relative;
+    width: 100%;
+}
+#executiveWrapper ul {
+    padding: 0;
+}
+.memberEmail {
+    font-size: 10px;
+}

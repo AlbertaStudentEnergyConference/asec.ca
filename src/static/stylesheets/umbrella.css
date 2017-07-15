@@ -63,3 +63,13 @@
 .right {
     text-align: right;
 }
+hr.halfhr {
+    width: 50%;
+}
+a.subtleLink {
+    color: #585858;
+    text-decoration: none;
+}
+a.subtleLink:hover {
+    text-decoration: underline;
+}

@@ -52,7 +52,7 @@ module.exports.process = function () {
     if (!process.env.hasOwnProperty('SERVER_SOFTWARE')) {
         // we got invoked without environment variables; mock them.
         process.env.REQUEST_URI = "/test?debug=true";
-        process.env.SCRIPT_URL = "/test";
+        process.env.SCRIPT_URL = process.argv[2] ? process.argv[2] : "/test";
         process.env.REQUEST_METHOD = "GET";
         process.env.QUERY_STRING = "debug=true";
     }

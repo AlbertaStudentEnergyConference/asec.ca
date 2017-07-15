@@ -8,4 +8,4 @@ CREATE TABLE `industry` (
     diet ENUM('vegetarian', 'vegan', 'pescatarian'),
     email VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
-)
+);
