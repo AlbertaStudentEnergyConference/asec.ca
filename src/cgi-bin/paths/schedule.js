@@ -18,7 +18,8 @@ module.exports.handle = function (request, clbk) {
         content: "",
         cache: request.cacheControl,
         id: request.id,
-        time: Date.now() - process.env.REQUEST_START
+        time: Date.now() - process.env.REQUEST_START,
+        head: ''
     });
 
     clbk();

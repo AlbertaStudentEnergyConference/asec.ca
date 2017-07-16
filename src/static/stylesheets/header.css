@@ -20,4 +20,42 @@
 #header .menu a {
     color: #585858;
     text-decoration: none;
+    transition: 1s;
+}
+#header .menu a:hover {
+    color: #0D956C;
+}
+#socialMedia {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.socialMediaIcon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+.socialMediaIconSource {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+.mediaIcon_separator {
+    display: inline-block;
+    border: 1px #585858 solid;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 32px;
+}
+#mediaIcon_facebook {
+    background-image: url("/static/images/facebook.png");
+    background-repeat: no-repeat;
+}
+#mediaIcon_twitter {
+    background-image: url("/static/images/twitter.png");
+    background-repeat: no-repeat;
+}
+#mediaIcon_linkedin {
+    background-image: url("/static/images/linkedin.png");
+    background-repeat: no-repeat;
 }
