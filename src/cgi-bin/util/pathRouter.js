@@ -15,8 +15,8 @@ const constants = require(`${__rootname}/util/const`);
 const template = require(`${__rootname}/util/template`);
 
 let registeredEndpoints = {
-    GET: {},
-    POST: {}
+    GET: [],
+    POST: []
 };
 
 /**
@@ -40,10 +40,7 @@ function descend (path) {
                 enpt.name = dir[i].substring(0, dir[i].indexOf("."));
                 enpt.abspath = pathLib.resolve(path + "/" + dir[i]);
                 enpt.code = require(enpt.abspath);
-                enpt.paths = enpt.code.matchPaths;
-                for (let path of enpt.paths) {
-                    registeredEndpoints[enpt.type][path] = enpt;
-                }
+                registeredEndpoints[enpt.type].push(enpt);
             } else {
                 log.warn("Unexpected non-js file in endpoints: " + path + "/" + dir[i]);
             }
@@ -56,23 +53,36 @@ module.exports.init = function () {
 };
 
 module.exports.handoff = function (request, clbk) {
-    if (registeredEndpoints[request.method].hasOwnProperty(request.pathname)) {
-        // found the page
-        log.debug("Matching handler located");
-        registeredEndpoints[request.method][request.pathname].code.handle(request, clbk);
-    } else {
-        // 404
-        headers.setHeader(request, "status", `${constants.status.NOTFOUND.code} ${constants.status.NOTFOUND.text}`);
-
-        request.body = template.get("errors/error.html", {
-            error: constants.status.NOTFOUND,
-            explanation: `The requested URL was not found on this server.`,
-            url: request.pathname,
-            id: request.id,
-            method: request.method,
-            cache: request.cacheControl
-        });
-        log.info("Terminating request with NOTFOUND");
-        clbk();
+    for (let epnt of registeredEndpoints[request.method]) {
+        for (let path of epnt.code.matchPaths) {
+            if (typeof path === "string") {
+                if (path === request.pathname) {
+                    log.debug("Matching handler located");
+                    epnt.code.handle(request, clbk);
+                    return;
+                }
+            } else if (path instanceof RegExp) {
+                if (path.test(request.pathname)) {
+                    log.debug("Matching handler located");
+                    epnt.code.handle(request, clbk);
+                    return;
+                }
+            } else {
+                throw new Error("Unknown pathspec: " + path);
+            }
+        }
     }
+    // 404
+    headers.setHeader(request, "status", `${constants.status.NOTFOUND.code} ${constants.status.NOTFOUND.text}`);
+
+    request.body = template.get("errors/error.html", {
+        error: constants.status.NOTFOUND,
+        explanation: `The requested URL was not found on this server.`,
+        url: request.pathname,
+        id: request.id,
+        method: request.method,
+        cache: request.cacheControl
+    });
+    log.info("Terminating request with NOTFOUND");
+    clbk();
 };

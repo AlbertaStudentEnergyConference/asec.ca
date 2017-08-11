@@ -15,7 +15,7 @@ module.exports.matchPaths = [
 
 module.exports.handle = function (request, clbk) {
     log.debug("Searching for team members");
-    request.db.query('SELECT name,position,email FROM team where type = "executive"', function (err, results) {
+    request.db.query('SELECT name,position,email,phone FROM team where type = "executive"', function (err, results) {
         if (err) {
             throw err;
         }
@@ -44,6 +44,7 @@ module.exports.handle = function (request, clbk) {
                                     <span class="memberName">${result.name}</span><br />
                                     <span class="memberPosition secondaryFont">${result.position}</span><br />
                                     <span class="memberEmail">E. <a href="mailto:${result.email}" class="subtleLink">${result.email}</a></span>
+                                    ${result.phone ? `<br /><span class="memberPhone">P. <a href="tel:${result.phone}" class="subtleLink">${result.phone}</a></span>` : ""}
                                 </div>
                             </li>`;
 

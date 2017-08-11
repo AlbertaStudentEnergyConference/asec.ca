@@ -41,7 +41,7 @@ function Config () {
     }
 
     self.cfg = {
-        log:{
+        log: {
             LogLevel: new ConfigEntry(true, parseInt, function (v) {
                 for (const p in constants.loglevel) {
                     if (constants.loglevel[p] === v) {
@@ -52,6 +52,19 @@ function Config () {
             }),
             LogFile: new ConfigEntry(true, null, function (v) {
                 return typeof v === "string";
+            })
+        },
+        tickets: {
+            TicketMax: new ConfigEntry(true, parseInt, function (v) {
+                return !isNaN(v);
+            }),
+            TicketPrice: new ConfigEntry(true, parseFloat, function (v) {
+                return typeof v === "number";
+            }),
+            RegistrationClosed: new ConfigEntry(true, function (v) {
+                return v === "true";
+            }, function (v) {
+                return typeof v === "boolean";
             })
         }
     };

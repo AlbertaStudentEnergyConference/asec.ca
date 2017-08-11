@@ -39,6 +39,10 @@
     width: 32px;
     height: 32px;
     display: block;
+    transition: 1s;
+}
+.socialMediaIconSource:hover {
+    filter: brightness(50%);
 }
 .mediaIcon_separator {
     display: inline-block;
