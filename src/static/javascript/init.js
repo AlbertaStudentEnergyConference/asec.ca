@@ -3,6 +3,7 @@
  * @since September 3, 2017
  * @file init.js
  * @requires jquery
+ * @copyright Alberta Student Energy Conference 2017
  * Contains global init logic for the entire site
  */
 

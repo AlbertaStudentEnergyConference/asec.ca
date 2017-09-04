@@ -37,7 +37,7 @@ module.exports.handle = function (request, clbk) {
                 cache: request.cacheControl,
                 id: request.id,
                 time: Date.now() - process.env.REQUEST_START,
-                head: `<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />`
+                head: ''
             });
         }
         clbk();
