@@ -4,8 +4,8 @@
     height: 150px;
 }
 #header .wrapped_image_wrapper {
-    margin-left: 10px;
-    margin-top: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 #header .menu {
     width: 100%;
