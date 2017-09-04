@@ -58,13 +58,23 @@ module.exports.handoff = function (request, clbk) {
             if (typeof path === "string") {
                 if (path === request.pathname) {
                     log.debug("Matching handler located");
-                    epnt.code.handle(request, clbk);
+                    epnt.code.handle(request, function (err) {
+                        if (err) {
+                            throw err;
+                        }
+                        clbk();
+                    });
                     return;
                 }
             } else if (path instanceof RegExp) {
                 if (path.test(request.pathname)) {
                     log.debug("Matching handler located");
-                    epnt.code.handle(request, clbk);
+                    epnt.code.handle(request, function (err) {
+                        if (err) {
+                            throw err;
+                        }
+                        clbk();
+                    });
                     return;
                 }
             } else {

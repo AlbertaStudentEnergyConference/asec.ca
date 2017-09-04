@@ -15,25 +15,31 @@ module.exports.matchPaths = [
 
 module.exports.handle = function (request, clbk) {
     // is there a ticket to register?
-    let open = false;
     request.db.query("SELECT COUNT(*) FROM attendee;", function(err, rep) {
         if (err) {
             throw err;
         }
-        if (rep[0]["COUNT(*)"] < config.tickets.TicketMax) {
-            open = true;
+        if (!config.tickets.RegistrationClosed && rep[0]["COUNT(*)"] < config.tickets.TicketMax) {
+            // registration is open
+            request.body = template.get("default.html", {
+                title: "ASEC | Register",
+                content: template.get("register_open.html", {}),
+                cache: request.cacheControl,
+                id: request.id,
+                time: Date.now() - process.env.REQUEST_START,
+                head: '<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />'
+            });
+        } else {
+            // registration is closed
+            request.body = template.get("default.html", {
+                title: "ASEC | Register",
+                content: template.get("register_closed.html", {}),
+                cache: request.cacheControl,
+                id: request.id,
+                time: Date.now() - process.env.REQUEST_START,
+                head: `<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />`
+            });
         }
-        request.body = template.get("default.html", {
-            title: "ASEC | Register",
-            content: template.get("register.html", {
-                open: open
-            }),
-            cache: request.cacheControl,
-            id: request.id,
-            time: Date.now() - process.env.REQUEST_START,
-            head: '<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />'
-        });
-
         clbk();
     });
 };

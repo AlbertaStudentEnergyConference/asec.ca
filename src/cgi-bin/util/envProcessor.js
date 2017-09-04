@@ -9,6 +9,7 @@
 
 const path = require("path");
 const uuid = require("uuid/v1");
+const query2json = require(`${__rootname}/util/query2json.js`);
 
 // {
 //     "SCRIPT_URL": "/",
@@ -48,6 +49,9 @@ const uuid = require("uuid/v1");
 
 module.exports.process = function () {
     log.debug("Processing environment...");
+    for (let prop in process.env) {
+        log.debug(`env.[${prop}]: ${process.env[prop]}`);
+    }
 
     if (!process.env.hasOwnProperty('SERVER_SOFTWARE')) {
         // we got invoked without environment variables; mock them.
@@ -62,38 +66,10 @@ module.exports.process = function () {
         href: path.resolve(process.env.REQUEST_URI),
         pathname: path.resolve(process.env.SCRIPT_URL),
         method: process.env.REQUEST_METHOD,
-        query: {},
+        query: query2json.q2j(process.env.QUERY_STRING),
         headers: {}
     };
     process.env.REQUEST_ID = request.id;
-
-    let components = process.env.QUERY_STRING.split("&");
-    for (let component of components) {
-        let comp = component.split("=");
-        let key = comp.splice(0, 1);
-        let val = comp.join("=");
-
-        try {
-            key = decodeURIComponent(key);
-        } catch (e) {
-            if (e instanceof URIError) {
-                // those bastards gave us a bad QUERY_STRING
-            } else {
-                throw e;
-            }
-        }
-        try {
-            val = decodeURIComponent(val);
-        } catch (e) {
-            if (e instanceof URIError) {
-                // those bastards gave us a bad QUERY_STRING
-            } else {
-                throw e;
-            }
-        }
-
-        request.query[key] = val;
-    }
 
     return request;
 }

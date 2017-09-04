@@ -100,3 +100,9 @@ a.subtleLink:hover {
 .invis {
     display: none;
 }
+.textbody {
+    padding:  20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+}

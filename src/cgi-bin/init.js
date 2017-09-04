@@ -18,6 +18,7 @@ const output = require(`${__rootname}/util/output`);
 const exitProcedures = require(`${__rootname}/util/exitProcedures`);
 global.log = require(`${__rootname}/util/log`);
 const envProcessor = require(`${__rootname}/util/envProcessor`);
+const dataConsumer = require(`${__rootname}/util/dataConsumer`);
 const headers = require(`${__rootname}/util/headers`);
 const dbC = require(`${__rootname}/db/db`);
 const pathRouter = require(`${__rootname}/util/pathRouter`);
@@ -34,23 +35,27 @@ pathRouter.init();
 log.debug("Obtaining database connection...");
 dbC.acquire(function (db) {
     request.db = db;
+    dataConsumer.consume(function(err, data) {
+        request.queryData = data;
+        // cache control
+        request.cacheControl = {
+            css: Date.now(),
+            js: Date.now(),
+            now: Date.now()
+        };
 
-    // cache control
-    request.cacheControl = {
-        css: Date.now(),
-        js: Date.now(),
-        now: Date.now()
-    };
+        log.debug("Setting default headers...");
+        headers.setDefaultHeaders(request);
+        pathRouter.handoff(request, function () {
+            // everything should be done. finish it off.
+            output.write(headers.get(request));
+            output.write("");
+            if (request.body) {
+                output.write(request.body);
+            }
 
-    log.debug("Setting default headers...");
-    headers.setDefaultHeaders(request);
-    pathRouter.handoff(request, function () {
-        // everything should be done. finish it off.
-        output.write(headers.get(request));
-        output.write("");
-        output.write(request.body);
-
-        // We're all done here.
-        exitProcedures.shutdown(0);
+            // We're all done here.
+            exitProcedures.shutdown(0);
+        });
     });
 });

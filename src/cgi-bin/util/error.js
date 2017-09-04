@@ -35,3 +35,12 @@ module.exports.ExtendableError = ExtendableError;
  */
 class UnhandledTypeError extends ExtendableError {}
 module.exports.UnhandledTypeError = UnhandledTypeError;
+
+/**
+ * Error for handling unmet expectations
+ * @class UnmetExpectationError
+ * @member util.error
+ * @extends ExtendableError
+ */
+class UnmetExpectationError extends ExtendableError {}
+module.exports.UnmetExpectationError = UnmetExpectationError;
