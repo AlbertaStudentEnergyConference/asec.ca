@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/header.css?v=${cache.css}" />
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/content.css?v=${cache.css}" />
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/footer.css?v=${cache.css}" />
+        <script type="text/javascript" src="/static/javascript/lib/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/javascript/init.js?v=${cache.js}"></script>
         ${head}
     </head>
     <body>
@@ -46,7 +48,7 @@
                             <td></td>
                             <td><a href="/">ASEC</a></td>
                             <td><a href="/about">ABOUT</a></td>
-                            <td><a href="/gallery">GALLERY</a></td>
+                            <!--td><a href="/gallery">GALLERY</a></td-->
                             <td><a href="/schedule">SCHEDULE</a></td>
                             <td><a href="/register">REGISTER</a></td>
                             <td><a href="/team">TEAM</a></td>
@@ -67,12 +69,12 @@ ${content}
                     <span class="contrast">
                         Copyright 2017 Alberta Student Energy Conference (ASEC), All Rights Reserved<br />
                         <a href="mailto:it@asec.ca">Contact Webmaster</a> | <a href="mailto:communications@asec.ca">General Inquieries</a>
-                    </div>
+                    </span>
                     <div class="technicalDetails right">
-                        <span class="contrast">
+                        <span class="contrast debug invis">
                             Request ID: ${id}<br />
                             Request Load: ${time}ms<br />
-                        </div>
+                        </span>
                     </div>
                 </div>
             </div>

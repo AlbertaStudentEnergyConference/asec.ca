@@ -3,5 +3,9 @@
     "env": {
         "es6": true,
         "node": true
+    },
+    "globals": {
+        "$": true,
+        "asec": true
     }
 }

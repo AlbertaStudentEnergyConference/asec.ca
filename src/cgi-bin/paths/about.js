@@ -15,11 +15,13 @@ module.exports.matchPaths = [
 module.exports.handle = function (request, clbk) {
     request.body = template.get("default.html", {
         title: "ASEC | About",
-        content: "The Alberta Student Energy Conference (ASEC) is an annual event for undergraduate engineering, geoscience and business students. ASEC takes place over two days at and connects aspiring students with professionals and experts from the energy industry. Students are provided with various opportunities to explore, engage and learn in order to contribute to the industry.",
+        content: template.get("about.html", {
+
+        }),
         cache: request.cacheControl,
         id: request.id,
         time: Date.now() - process.env.REQUEST_START,
-        head: ''
+        head: `<link rel="stylesheet" type="text/css" href="/static/stylesheets/about.css?v=${request.cacheControl.css}" />`
     });
 
     clbk();
