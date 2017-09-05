@@ -22,6 +22,7 @@ module.exports.handle = function (request, clbk) {
         if (!config.tickets.RegistrationClosed && rep[0]["COUNT(*)"] < config.tickets.TicketMax) {
             // registration is open
             request.body = template.get("default.html", {
+                keywords: ["asec", "alberta", "student", "energy", "conference", "register", "attend", "go"],
                 title: "ASEC | Register",
                 content: template.get("register_open.html", {}),
                 cache: request.cacheControl,
@@ -32,6 +33,7 @@ module.exports.handle = function (request, clbk) {
         } else {
             // registration is closed
             request.body = template.get("default.html", {
+                keywords: ["asec", "alberta", "student", "energy", "conference", "register", "attend", "go"],
                 title: "ASEC | Register",
                 content: template.get("register_closed.html", {}),
                 cache: request.cacheControl,

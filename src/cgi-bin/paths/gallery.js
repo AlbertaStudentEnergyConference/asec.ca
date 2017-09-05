@@ -14,6 +14,7 @@ module.exports.matchPaths = [
 
 module.exports.handle = function (request, clbk) {
     request.body = template.get("default.html", {
+        keywords: ["asec", "alberta", "student", "energy", "conference", "gallery", "pictures"],
         title: "ASEC | Gallery",
         content: "",
         cache: request.cacheControl,

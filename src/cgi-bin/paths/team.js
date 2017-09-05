@@ -75,6 +75,7 @@ module.exports.handle = function (request, clbk) {
                         bigBoss.sort();
                         vicePresidents.sort();
                         request.body = template.get("default.html", {
+                            keywords: ["asec", "alberta", "student", "energy", "conference", "team", "group", "members"],
                             title: "ASEC | Team",
                             content: template.get("team.html", {
                                 chairs: bigBoss.join(''),

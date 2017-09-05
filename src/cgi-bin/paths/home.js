@@ -50,6 +50,10 @@ module.exports.handle = function (request, clbk) {
             }
         }
         request.body = template.get("default.html", {
+            keywords: [
+                "asec", "alberta", "student", "energy", "conference", "home", "oil", "show", "uofc", "university",
+                "calgary", "momentum", "petroleum"
+            ],
             title: "Alberta Student Energy Conference",
             content: template.get("home.html", {
                 sponsorHeader: sponsorTableHeader.join(""),
