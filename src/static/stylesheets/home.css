@@ -1,0 +1,22 @@
+.biglogo_text {
+    text-align: left;
+    padding-left: 50px;
+}
+.primaryFont.logoFont {
+    font-size: 30px;
+}
+.secondaryFont.logoFont {
+    font-size: 25px;
+}
+#mainAttraction .wrapped_image_wrapper {
+    text-align: center;
+    padding-top: 30px;
+}
+#mainAttraction {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+#mainAttraction hr {
+    width: 200px;
+}

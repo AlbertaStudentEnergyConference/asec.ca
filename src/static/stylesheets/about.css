@@ -2,4 +2,9 @@
     max-width: 800px;
     margin: auto;
     text-align: justify;
+    padding-top: 45px;
+}
+.sig {
+    display: inline-block;
+    user-select: none;
 }

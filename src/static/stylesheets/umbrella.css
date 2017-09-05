@@ -13,31 +13,15 @@ body {
     padding-bottom: 100px;
     min-height: 100%;
     background-color: #E2E9E7;
+    font-family: "Encode Sans Semi Condensed", sans-serif;
 }
-/*#site {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    left: 0;
-    right: 0;
-    -a: 0;
-    -b: 0;
-    -select: 0;
-    -start: 0;
-    width: 100%;
-    height: 100%;
-    padding-bottom: 50px;
-}*/
 
 .center,
 .centerX {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-}>
-                                Request Load: ${time}m
+}
 
 .center,
 .centerY {
@@ -94,15 +78,51 @@ a.subtleLink:hover {
 .contrast {
     background-color: rgba(255, 255, 255, 0.4);
     display: inline-block;
-    padding: 1rem;
+    padding: 5px;
     border-radius: 5px;
 }
 .invis {
     display: none;
 }
 .textbody {
-    padding:  20px;
+    padding: 20px;
+    padding-top: 100px;
     text-align: center;
     max-width: 1200px;
     margin: auto;
+}
+.thickSeparator {
+    border: 1px solid #0D956C;
+    width: 90%;
+}
+.textInput:focus {
+    outline-color: #0D956C;
+}
+.topSpace {
+    padding-top: 12px;
+}
+.inputAndSubmit {
+    display: inline-block;
+    position: relative;
+}
+.inputAndSubmit input:first-child {
+    padding-right: 30px;
+}
+.inputAndSubmit input[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    color: #585858;
+}
+.inputAndSubmit input[type="submit"]:hover {
+    cursor: pointer;
+}
+h1 {
+    color: #585858;
+    padding-left: 30px;
+}
+.secondaryColor {
+    color: #0D956C;
 }

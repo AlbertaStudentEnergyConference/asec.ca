@@ -15,7 +15,7 @@ module.exports.matchPaths = [
 module.exports.handle = function (request, clbk) {
     request.body = template.get("default.html", {
         title: "ASEC | Schedule",
-        content: "",
+        content: template.get("schedule.html", {}),
         cache: request.cacheControl,
         id: request.id,
         time: Date.now() - process.env.REQUEST_START,

@@ -5,8 +5,10 @@
     <br />
     <br />
     If you would like, you can join our mailing list and we will let you know when registration opens again.
-    <form action="/subscribe" method="post">
-        <input type="email" name="email" placeholder="john.doe@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-        <input type="submit" />
+    <form action="/subscribe" method="post" class="topSpace">
+        <div class="inputAndSubmit">
+            <input type="email" name="email" placeholder="john.doe@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="textInput primaryFont" required/>
+            <input type="submit" value=">"/>
+        </div>
     </form>
 </div>

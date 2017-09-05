@@ -12,11 +12,12 @@ copyright (c) 2017 Alberta Student Energy Conference. All Rights Reserved.
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/header.css?v=${cache.css}" />
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/content.css?v=${cache.css}" />
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/footer.css?v=${cache.css}" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed" />
         <script type="text/javascript" src="/static/javascript/lib/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/static/javascript/init.js?v=${cache.js}"></script>
         ${head}
     </head>
-    <body>
+    <body class="primaryFont">
         <div id="site">
             <!-- BEGIN HEADER -->
             <div id="header">
@@ -59,6 +60,7 @@ copyright (c) 2017 Alberta Student Energy Conference. All Rights Reserved.
                         </tr>
                     </tbody>
                 </table>
+                <hr class="thickSeparator" />
             </div>
             <!-- END HEADER -->
             <!-- BEGIN PAGE -->
@@ -70,7 +72,7 @@ ${content}
             <div id="footer">
                 <div id="footerContent" class="centerY">
                     <span class="contrast">
-                        Copyright 2017 Alberta Student Energy Conference (ASEC), All Rights Reserved<br />
+                        Copyright &copy; 2017 Alberta Student Energy Conference (ASEC), All Rights Reserved<br />
                         <a href="mailto:it@asec.ca">Contact Webmaster</a> | <a href="mailto:communications@asec.ca">General Inquieries</a>
                     </span>
                     <div class="technicalDetails right">

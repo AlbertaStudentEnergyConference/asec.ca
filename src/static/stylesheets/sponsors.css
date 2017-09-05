@@ -1,0 +1,56 @@
+#sponsors ul {
+    padding: 0;
+    text-align: center;
+}
+#sponsors table {
+    width: 100%;
+    overflow: hidden;
+}
+#sponsors td {
+    position: relative;
+}
+#sponsors table tr:first-child td {
+    text-align: center;
+    color: #0D956C;
+}
+.sponsor {
+    display: inline-block;
+    margin: 20px;
+}
+.sponsorSection.Platinum img {
+    height: 120px;
+}
+.sponsorSection.Gold img,
+.sponsorSection.Silver img,
+.sponsorSection.Bronze img,
+.sponsorSection.Table img,
+.sponsorSection.EnergyBowl img {
+    height: 80px;
+}
+.sponsorSection img {
+    padding: 10px;
+    transition: 0.5s;
+}
+.sponsorSection img:hover {
+    background-color: rgba(164, 164, 164, 0.6);
+    border-radius: 10px;
+}
+#sponsors td:hover::after {
+    background-color: rgba(164, 164, 164, 0.43);
+    content: "";
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+#becomeASponsor {
+    display: inline-block;
+    bottom: -13px;
+    right: 37px;
+    position: absolute;
+}
+#sponsorHeaderWrapper {
+    position: relative;
+}
