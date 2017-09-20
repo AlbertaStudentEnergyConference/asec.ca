@@ -26,7 +26,7 @@ module.exports.handle = function (request, clbk) {
             Silver: [],
             Bronze: [],
             Table: [],
-            Energybowl: []
+            "Energy Bowl": []
         };
         for (let row of rows) {
             sponsors[row.level].push(template.get("sponsors/sponsor.html", {

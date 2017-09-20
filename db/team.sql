@@ -128,13 +128,6 @@ INSERT INTO `team` (`id`, `name`, `position`, `type`, `parent_id`) VALUES
     ),
     (
         UUID(),
-        "Abhishek Khosla",
-        "Energy Bowl Director",
-        "director",
-        (SELECT `t`.`id` FROM `team` `t` WHERE `t`.`position` LIKE "%Bowl")
-    ),
-    (
-        UUID(),
         "Benjamin Sterling",
         "Sponsorship Director",
         "director",
@@ -153,11 +146,4 @@ INSERT INTO `team` (`id`, `name`, `position`, `type`, `parent_id`) VALUES
         "Facilities Director",
         "director",
         (SELECT `t`.`id` FROM `team` `t` WHERE `t`.`position` LIKE "%Facilities")
-    ),
-    (
-        UUID(),
-        "Jiaxin Zhu",
-        "Sponsorship Director",
-        "director",
-        (SELECT `t`.`id` FROM `team` `t` WHERE `t`.`position` LIKE "%Sponsorship")
     );
