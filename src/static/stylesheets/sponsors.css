@@ -1,7 +1,7 @@
 #sponsors {
     text-align: center;
 }
-#sponsors ul {
+#sponsors > ul {
     padding: 0;
     text-align: center;
 }
@@ -12,14 +12,21 @@
 #sponsors td {
     position: relative;
 }
+.sponsorHeader,
 #sponsors table tr:first-child td,
 #sponsors span:first-of-type {
     text-align: center;
     color: #0D956C;
 }
+ul.block,
+.sponsorSectionWrapper,
 .sponsor {
     display: inline-block;
     margin: 20px;
+    vertical-align: top;
+}
+.sponsorHeader {
+    display: block;
 }
 .sponsorSection.Platinum img {
     height: 180px;
