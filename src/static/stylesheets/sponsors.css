@@ -24,6 +24,7 @@ ul.block,
     display: inline-block;
     margin: 20px;
     vertical-align: top;
+    padding: 0;
 }
 .sponsorHeader {
     display: block;
