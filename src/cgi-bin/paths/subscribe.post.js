@@ -25,6 +25,7 @@ module.exports.handle = function (request, clbk) {
                 }
                 request.body = template.get("default.html", {
                     title: "ASEC | Subscribe",
+                    keywords: [],
                     content: `<div class="textbody">Thank you for subscribing.</div>`,
                     cache: request.cacheControl,
                     id: request.id,
