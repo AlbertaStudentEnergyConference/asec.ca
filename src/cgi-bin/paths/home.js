@@ -38,7 +38,13 @@ module.exports.handle = function (request, clbk) {
         let sponsorHTML = [];
         let sponsorTableHeader = [];
         let sponsorTableGroups = [];
+        let sponsorPlatinumHeader = `<span class="primaryFont">Platinum</span>`;
+        let sponsorPlatinum = sponsors.Platinum.length ? sponsors.Platinum.join("\n") : "";
         for (let prop in sponsors) {
+            // Platinum sponsors don't go in the table
+            if (prop === "Platinum") {
+                continue;
+            }
             // if we have sponsors in this category
             if (sponsors[prop].length) {
                 sponsorTableHeader.push(`<td class="primaryFont">${prop}</td>`);
@@ -57,6 +63,8 @@ module.exports.handle = function (request, clbk) {
             title: "Alberta Student Energy Conference",
             content: template.get("home.html", {
                 sponsorHeader: sponsorTableHeader.join(""),
+                sponsorPlatinum: sponsorPlatinum,
+                sponsorPlatinumHeader: sponsorPlatinum.length ? sponsorPlatinumHeader : "",
                 sponsors: sponsorHTML.join("\n"),
                 sponsorGroups: sponsorTableGroups.join("")
             }),

@@ -1,3 +1,6 @@
+#sponsors {
+    text-align: center;
+}
 #sponsors ul {
     padding: 0;
     text-align: center;
@@ -9,7 +12,8 @@
 #sponsors td {
     position: relative;
 }
-#sponsors table tr:first-child td {
+#sponsors table tr:first-child td,
+#sponsors span:first-of-type {
     text-align: center;
     color: #0D956C;
 }
@@ -18,14 +22,18 @@
     margin: 20px;
 }
 .sponsorSection.Platinum img {
-    height: 80px;
+    height: 180px;
 }
-.sponsorSection.Gold img,
-.sponsorSection.Silver img,
+.sponsorSection.Gold img {
+    height: 130px;
+}
+.sponsorSection.Silver img {
+    height: 110px;
+}
 .sponsorSection.Bronze img,
 .sponsorSection.Table img,
 .sponsorSection.EnergyBowl img {
-    height: 80px;
+    height: 70px;
 }
 .sponsorSection img {
     padding: 10px;
