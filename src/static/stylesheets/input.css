@@ -1,0 +1,25 @@
+.inputBlock > div {
+    display: inline-block;
+    padding: 20px;
+}
+.inputLeft {
+    float: left;
+    text-align: left;
+}
+.inputRight {
+    float: right;
+    text-align: right;
+}
+.inputMiddle {
+    text-align: center;
+    width: 100%;
+}
+.inputBlock input[type="text"],
+.inputBlock select {
+    background-color: #FFFFFF;
+    width: 230px;
+}
+.inputBlock span.required::after {
+    content: "*";
+    color: red;
+}

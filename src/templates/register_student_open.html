@@ -1,0 +1,145 @@
+<!--
+First Name               Last Name
+Email
+
+School                   Year
+Discipline
+
+Dietary Restriction
+
+EnergyBowl?
+    Team Name
+Facility Tour?
+
+How did you hear about us?
+-->
+<div id="register" class="topSpace primaryFont textbody">
+    Registration for students can be found below. If you are a member of industry and are interested in attending, please
+    <a href="mailto:communications@asec.ca" class="primaryFont">contact us</a>. We look forward to seeing you at the next Alberta Student Energy Conference!
+    <form action="/signup" method="post" class="topSpace">
+        <div class="inputBlock">
+            <div class="inputLeft">
+                <span class="required">First Name:</span>
+                <input type="text" name="firstName" maxlength="32" class="textInput" required />
+            </div>
+            <div class="inputRight">
+                <span class="required">Last Name:</span>
+                <input type="text" name="lastName" maxlength="32" class="textInput" required />
+            </div>
+            <br />
+            <div class="inputMiddle">
+                <span class="required">Email Address:</span>
+                <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="textInput" required />
+            </div>
+        </div>
+
+        <hr class="thickSeparator" />
+
+        <div class="inputBlock">
+            <div class="inputLeft">
+                <span class="required">School:</span>
+                <select name="school" class="selectInput" data-target="#schoolSpecification" required>
+                    <option value="" selected></option>
+                    <option value="Mount Royal University">Mount Royal University</option>
+                    <option value="SAIT">SAIT</option>
+                    <option value="University of Alberta">University of Alberta</option>
+                    <option value="University of Calgary">University of Calgary</option>
+                    <option value="University of Lethbridge">University of Lethbridge</option>
+                    <option value="-1">Other</option>
+                </select>
+            </div>
+            <div id="schoolSpecification" class="inputRight hidden">
+                <span class="required">Please Specify:</span>
+                <input type="text" name="schoolSpecify" maxLength="255" class="textInput" value="" />
+            </div>
+
+            <br />
+
+            <div class="inputLeft">
+                <span class="required">Discipline:</span>
+                <select name="discipline" class="selectInput" data-target="#disciplineSpecification" required>
+                    <option value="" selected></option>
+                    <option value="Business">Business</option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Energy Engineering">Energy Engineering</option>
+                    <option value="Geomatics Engineering">Geomatics Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Oil and Gas Engineering">Oil and Gas Engineering</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="-1">Other</option>
+                </select>
+            </div>
+            <div id="disciplineSpecification" class="inputRight hidden">
+                <span class="required">Please Specify:</span>
+                <input type="text"  name="disciplineSpecify" maxlength="255" class="textInput" value="" />
+            </div>
+
+            <br />
+
+            <div class="inputLeft">
+                <span class="required">Year:</span>
+                <select name="year" class="selectInput" required>
+                    <option value="" selected></option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="3.5">Internship</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+        </div>
+
+        <hr  class="thickSeparator" />
+
+        <div class="inputBlock">
+            <div class="inputMiddle">
+                <span class="required">Dietary Restrictions:</span>
+                <select name="diet" class="selectInput" required>
+                    <option value="" selected></option>
+                    <option value="None">None</option>
+                    <option value="Gluten Free">Gluten Free</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                </select>
+            </div>
+        </div>
+
+        <hr class="thickSeparator" />
+
+        <div class="inputBlock">
+            <div class="inputLeft">
+                <span>I would like to participate in the Energy Bowl</span>
+                <input type="checkbox" name="eb" class="boxInput" data-target="#energyBowlTeam" />
+            </div>
+            <div id="energyBowlTeam" class="inputRight hidden">
+                <span class="required">Team Name:</span>
+                <input name="ebTeam" type="text" class="textInput" />
+            </div>
+            <br />
+
+            <div class="inputMiddle">
+                <span>I would like to participate in a Facility Tour</span>
+                <input type="checkbox" name="ft" class="boxInput" />
+            </div>
+        </div>
+
+        <hr class="thickSeparator" />
+
+        <div  class="inputBlock">
+            <div class="inputMiddle">
+                <span>How did you hear about us?</span>
+                <br />
+                <textarea class="longInput" name="hdyhau"></textarea>
+            </div>
+        </div>
+
+        <!-- <hr class="thickSeparator" /> -->
+
+        <div class="inputBlock">
+            <div class="inputMiddle">
+                <input type="submit">
+            </div>
+        </div>
+    </form>
+</div>

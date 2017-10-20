@@ -1,0 +1,11 @@
+#register {
+    max-width: 850px;
+    padding-top: 45px;
+}
+#register hr.thickSeparator {
+    width: 80%;
+}
+.longInput[name="hdyhau"] {
+    width: 80%;
+    height: 45px;
+}

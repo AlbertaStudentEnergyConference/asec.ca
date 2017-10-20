@@ -84,6 +84,9 @@ a.subtleLink:hover {
 .invis {
     display: none;
 }
+.hidden {
+    visibility: hidden !important;
+}
 .textbody {
     padding: 20px;
     padding-top: 100px;
@@ -95,7 +98,10 @@ a.subtleLink:hover {
     border: 1px solid #0D956C;
     width: 90%;
 }
-.textInput:focus {
+.longInput:focus,
+.boxInput:focus,
+.textInput:focus,
+.selectInput:focus {
     outline-color: #0D956C;
 }
 .topSpace {

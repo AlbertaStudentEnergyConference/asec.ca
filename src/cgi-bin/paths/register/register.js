@@ -1,5 +1,5 @@
 /**
- * Request handler for the register page
+ * Request handler for the register page (student)
  * @file register.js
  * @author Mitchell Sawatzky
  * @since July 12, 2017
@@ -15,20 +15,22 @@ module.exports.matchPaths = [
 
 module.exports.handle = function (request, clbk) {
     // is there a ticket to register?
-    request.db.query("SELECT COUNT(*) FROM attendee;", function(err, rep) {
+    request.db.query(`SELECT COUNT(*) FROM attendee WHERE year = ${config.conference.Year} AND type = 'Student';`, function(err, rep) {
         if (err) {
             throw err;
         }
-        if (!config.tickets.RegistrationClosed && rep[0]["COUNT(*)"] < config.tickets.TicketMax) {
+        if (!config.studenttickets.RegistrationClosed && rep[0]["COUNT(*)"] < config.studenttickets.TicketMax) {
             // registration is open
             request.body = template.get("default.html", {
                 keywords: ["asec", "alberta", "student", "energy", "conference", "register", "attend", "go"],
                 title: "ASEC | Register",
-                content: template.get("register_open.html", {}),
+                content: template.get("register_student_open.html", {}),
                 cache: request.cacheControl,
                 id: request.id,
                 time: Date.now() - process.env.REQUEST_START,
-                head: '<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />'
+                head: `<link rel="stylesheet" type="text/css" href="/static/stylesheets/register.css" />
+                    <link rel="stylesheet" type="text/css" href="/static/stylesheets/input.css" />
+                    <script type="text/javascript" src="/static/javascript/utils.js"></script>`
             });
         } else {
             // registration is closed

@@ -54,7 +54,7 @@ function Config () {
                 return typeof v === "string";
             })
         },
-        tickets: {
+        studenttickets: {
             TicketMax: new ConfigEntry(true, parseInt, function (v) {
                 return !isNaN(v);
             }),
@@ -65,6 +65,24 @@ function Config () {
                 return v === "true";
             }, function (v) {
                 return typeof v === "boolean";
+            })
+        },
+        industrytickets: {
+            TicketMax: new ConfigEntry(true, parseInt, function (v) {
+                return !isNaN(v);
+            }),
+            TicketPrice: new ConfigEntry(true, parseFloat, function (v) {
+                return typeof v === "number";
+            }),
+            RegistrationClosed: new ConfigEntry(true, function (v) {
+                return v === "true";
+            }, function (v) {
+                return typeof v === "boolean";
+            })
+        },
+        conference: {
+            Year: new ConfigEntry(true, parseInt, function (v) {
+                return !isNaN(v) && v.toString().length === 4;
             })
         }
     };

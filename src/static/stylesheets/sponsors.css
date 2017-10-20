@@ -70,3 +70,8 @@ ul.block,
 #sponsorHeaderWrapper {
     position: relative;
 }
+
+.sponsorSection.Bronze img[title="Enerplus"] {
+    height: 37px;
+    margin-top: 13px;
+}
