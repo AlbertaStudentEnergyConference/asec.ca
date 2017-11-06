@@ -24,7 +24,7 @@ module.exports.handle = function (request, clbk) {
             request.body = template.get("default.html", {
                 keywords: ["asec", "alberta", "student", "energy", "conference", "register", "attend", "go"],
                 title: "ASEC | Register",
-                content: template.get("register_student_open.html", {}),
+                content: template.get("register_student_eventbrite.html", {}),
                 cache: request.cacheControl,
                 id: request.id,
                 time: Date.now() - process.env.REQUEST_START,
