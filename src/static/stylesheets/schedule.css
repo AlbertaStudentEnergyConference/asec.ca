@@ -1,0 +1,33 @@
+.schedule-table {
+    width: 100%;
+}
+.schedule-table td {
+    border: 1px solid black;
+}
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+    width: 150px;
+    font-family: monospace;
+}
+
+.schedule-table th:nth-child(2),
+.schedule-table td:nth-child(2) {
+    width: 600px;
+}
+
+.schedule-table td {
+    padding: 8px 0;
+}
+
+.schedule-table tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+.schedule-table tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+.schedule-table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+.schedule-table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}

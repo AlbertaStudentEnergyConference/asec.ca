@@ -83,6 +83,9 @@ function Config () {
         conference: {
             Year: new ConfigEntry(true, parseInt, function (v) {
                 return !isNaN(v) && v.toString().length === 4;
+            }),
+            SponsorYear: new ConfigEntry(true, parseInt, function (v) {
+                return !isNaN(v) && v.toString().length === 4;
             })
         }
     };

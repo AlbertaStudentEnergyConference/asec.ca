@@ -7,6 +7,7 @@
  */
 
 const template = require(`${__rootname}/util/template`);
+const config = require(`${__rootname}/config`).get();
 
 module.exports.matchPaths = [
     "/", "", "/index", "/index.html"
@@ -15,7 +16,7 @@ module.exports.matchPaths = [
 module.exports.handle = function (request, clbk) {
     // get all dem sponsors
     // order by id so that the output is always consistent (wouldn't want the page to change randomly every refresh)
-    request.db.query("SELECT level, name, image, link FROM sponsors ORDER BY id", function (err, rows) {
+    request.db.query("SELECT level, name, image, link FROM sponsors WHERE year = ? ORDER BY id", config.conference.SponsorYear, function (err, rows) {
         if (err) {
             clbk(err);
             return;
@@ -61,7 +62,8 @@ module.exports.handle = function (request, clbk) {
             content: template.get("home.html", {
                 sponsorPlatinum: sponsorPlatinum,
                 sponsorPlatinumHeader: sponsorPlatinum.length ? sponsorPlatinumHeader : "",
-                sponsors: sponsorHTML.join("\n")
+                sponsors: sponsorHTML.join("\n"),
+                sponsorYear: config.conference.SponsorYear
             }),
             cache: request.cacheControl,
             id: request.id,
